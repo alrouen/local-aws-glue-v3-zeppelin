@@ -34,8 +34,10 @@ ENV ZEPPELIN_ADDR 0.0.0.0
 RUN pip install awscli pyspark==3.1.1 pytest boto3 delta-spark==1.0.0
 RUN ln -s /usr/local/bin/pyspark ${SPARK_HOME}/bin/pyspark
 
-# to run spark in local mode
-RUN sed -i 's/spark.master jes/spark.master local/g' /opt/amazon/conf/spark-defaults.conf 
+# to run spark in local mode, and enable s3a filesystem instead of EMR
+RUN sed -i 's/spark.master jes/spark.master local/g' /opt/amazon/conf/spark-defaults.conf
+RUN sed -i 's/spark.hadoop.fs.s3.impl com.amazon.ws.emr.hadoop.fs.EmrFileSystem/# spark.hadoop.fs.s3.impl com.amazon.ws.emr.hadoop.fs.EmrFileSystem/g' /opt/amazon/conf/spark-defaults.conf
+RUN sed -i 's/# spark.hadoop.fs.s3.impl org.apache.hadoop.fs.s3a.S3AFileSystem/spark.hadoop.fs.s3.impl org.apache.hadoop.fs.s3a.S3AFileSystem/g' /opt/amazon/conf/spark-defaults.conf
 
 # Apply Spark interpreter config
 ADD ./interpreter-0.10.0.json /opt/zeppelin-0.10.0-bin-all/conf/interpreter.json
@@ -54,3 +56,4 @@ RUN find /opt -name "._*" -type f -delete
 
 WORKDIR /opt/work
 CMD ["/opt/zeppelin-0.10.0-bin-all/bin/zeppelin.sh"]
+
