@@ -1,4 +1,6 @@
-# This is Glue V3 sample job to use Delta.io
+# ------------------------------------------------------------
+# This is Glue V3 sample job to use Delta.io (not local usage)
+# ------------------------------------------------------------
 import sys
 from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
