@@ -1,0 +1,11 @@
+{
+  "display_name": "PySpark 3",
+  "language": "python",
+  "argv": [
+    "/opt/conda/bin/python",
+    "-m",
+    "ipykernel_launcher",
+    "-f",
+    "{connection_file}"
+  ]
+}
