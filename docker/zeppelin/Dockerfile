@@ -30,9 +30,9 @@ ENV SPARK_CONF_DIR=${GLUE_HOME}/conf
 ENV ZEPPELIN_PORT 9001
 ENV ZEPPELIN_ADDR 0.0.0.0
 
-# additional python lib/bin
-RUN pip install awscli pyspark==3.1.1 pytest boto3 delta-spark==1.0.0
-RUN ln -s /usr/local/bin/pyspark ${SPARK_HOME}/bin/pyspark
+# additional python lib/bin --- pyspark is now embedded in AWS Spark
+# RUN pip install awscli pyspark==3.1.1 pytest boto3 delta-spark==1.0.0
+# RUN ln -s /usr/local/bin/pyspark ${SPARK_HOME}/bin/pyspark
 
 # to run spark in local mode, and enable s3a filesystem instead of EMR
 RUN sed -i 's/spark.master jes/spark.master local/g' /opt/amazon/conf/spark-defaults.conf
