@@ -13,7 +13,7 @@ RUN wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public -O public
 	
 # Spark / maven (still required?) / Amazon Glue3 packages (captured from live running job : /opt/amazon folder) and Zeppelin
 RUN curl -SsL https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-common/apache-maven-3.6.0-bin.tar.gz | tar -C /opt --warning=no-unknown-keyword -xzf -
-RUN curl -SsL https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-3.0/spark-3.1.1-amzn-0-bin-3.2.1-amzn-3.tgz | tar -C /opt --warning=no-unknown-keyword -xzf -
+RUN curl -SsL https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-3.0/spark-3.1.1-amzn-0-bin-3.2.1-amzn-3.tgz | tar -C /opt --warning=no-unknown-keyword -xvf -
 RUN curl -SsL https://mirror.checkdomain.de/apache/zeppelin/zeppelin-0.10.0/zeppelin-0.10.0-bin-all.tgz | tar -C /opt --warning=no-unknown-keyword -xzf -
 
 ADD ./glue3-opt-amazon.tgz /
